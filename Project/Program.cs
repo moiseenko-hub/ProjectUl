@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Project.Models.Database;
 
 namespace Project
 {
@@ -37,13 +39,19 @@ namespace Project
 
             app.UseRouting();
 
+
+
             app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Place}/{action=Index}/{id?}");
-
+            using (var scope = app.Services.CreateScope())
+            {
+                var context = scope.ServiceProvider.GetRequiredService<ProjectDbContext>();
+                DbSeeder.Seed(context);
+            }
             app.Run();
         }
     }
