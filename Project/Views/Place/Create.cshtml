@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Добавить новое место";
+}
+
+<h2>Добавить новое место</h2>
+
+<form method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+        <input name="name" class="form-control" placeholder="Название" required />
+    </div>
+    <div class="mb-3">
+        <input name="shortDescription" class="form-control" placeholder="Краткое описание" required />
+    </div>
+    <div class="mb-3">
+        <textarea name="fullDescription" class="form-control" placeholder="Полное описание" required></textarea>
+    </div>
+    <div class="mb-3">
+        <input name="types" class="form-control" placeholder="Типы (теги через запятую)" />
+    </div>
+    <div class="mb-3">
+        <label for="image" class="form-label">Выберите изображение</label>
+        <input type="file" name="image" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Создать</button>
+</form>
+
+<a href="/Place">Назад</a>

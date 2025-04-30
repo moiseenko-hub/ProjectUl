@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "Регистрация";
+}
+<h2>Регистрация</h2>
+
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <form method="post" class="card p-3 shadow-sm">
+            <div class="mb-3">
+                <input name="username" class="form-control" placeholder="Логин" />
+            </div>
+            <div class="mb-3">
+                <input name="password" class="form-control" type="password" placeholder="Пароль" />
+            </div>
+            <button type="submit" class="btn btn-success w-100">Зарегистрироваться</button>
+        </form>
+        <div class="text-center mt-2">
+            <a href="/Account/Login">Уже есть аккаунт? Войти</a>
+        </div>
+    </div>
+</div>

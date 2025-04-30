@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Project.Models.Database.PlaceData>
+
+@{
+    ViewData["Title"] = "Главная";
+}
+
+<h2>Туристические места</h2>
+<a href="/Place/Create" class="btn btn-success mb-3">Добавить новое место</a>
+
+<div class="row">
+    @foreach (var place in Model)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">@place.Name</h5>
+                    <p class="card-text">@place.ShortDescription</p>
+                    <a href="/Place/Details/@place.Id" class="btn btn-primary">Подробнее</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
