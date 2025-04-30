@@ -44,7 +44,7 @@ namespace Project.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(string name, string shortDescription, string fullDescription, string types, IFormFile image)
         {
-            // Создание нового объекта Place
+          
             var place = new PlaceData
             {
                 Name = name,
@@ -52,7 +52,7 @@ namespace Project.Controllers
                 FullDescription = fullDescription
             };
 
-            // Обработка типов
+          
             if (!string.IsNullOrWhiteSpace(types))
             {
                 var typeNames = types.Split(',', StringSplitOptions.RemoveEmptyEntries)
@@ -65,28 +65,26 @@ namespace Project.Controllers
                 }
             }
 
-            // Обработка изображения
+     
             if (image != null && image.Length > 0)
             {
-                // Генерация уникального имени файла
+               
                 var imageFileName = Path.GetFileNameWithoutExtension(image.FileName);
                 var extension = Path.GetExtension(image.FileName);
                 var uniqueFileName = $"{imageFileName}_{System.Guid.NewGuid()}{extension}";
 
-                // Путь, куда будет сохранено изображение
+     
                 var imagePath = Path.Combine(_hostEnvironment.WebRootPath, "images", uniqueFileName);
 
-                // Сохранение файла на сервере
+
                 using (var fileStream = new FileStream(imagePath, FileMode.Create))
                 {
                     await image.CopyToAsync(fileStream);
                 }
 
-                // Сохранение пути к изображению в базе данных
                 place.ImagePath = "/images/" + uniqueFileName;
             }
 
-            // Добавляем новое место в базу данных
             _context.Places.Add(place);
             await _context.SaveChangesAsync();
 
